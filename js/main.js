@@ -93,28 +93,31 @@ optionalExpensesBtn.addEventListener("click", function () {
 });
 
 countBudgetBtn.addEventListener("click", function () {
-  let sum = 0;
-
-  for (let i = 0; i < expensesItem.length; i++) {
-    let a = expensesItem[i].value;
-    let b = expensesItem[++i].value;
-    if (
-      typeof a === "string" &&
-      typeof a != null &&
-      typeof b != null &&
-      a != "" &&
-      b != "" &&
-      a.length < 50
-    ) {
-      appData.expenses[a] = b;
-      sum += +b; // +b это преобразование строки b в числовое значение b
-    } else {
-      i = i - 1;
-    }
-  }
+  // мой вариант
+  // let sum = 0;
+  // for (let i = 0; i < expensesItem.length; i++) {
+  //   let a = expensesItem[i].value;
+  //   let b = expensesItem[++i].value;
+  //   if (
+  //     typeof a === "string" &&
+  //     typeof a != null &&
+  //     typeof b != null &&
+  //     a != "" &&
+  //     b != "" &&
+  //     a.length < 50
+  //   ) {
+  //     appData.expenses[a] = b;
+  //     sum += +b; // +b это преобразование строки b в числовое значение b
+  //   } else {
+  //     i = i - 1;
+  //   }
+  // } // потом вычитаем sum из бюджета
 
   if (appData.budget != undefined) {
-    appData.moneyPerDay = ((appData.budget - sum) / 30).toFixed();
+    appData.moneyPerDay = (
+      (appData.budget - expensesValue.textContent) /
+      30
+    ).toFixed();
     dayBudgetValue.textContent = appData.moneyPerDay;
 
     if (appData.moneyPerDay < 100) {
